@@ -575,8 +575,8 @@ def display_hangman(tries):
 
 
 if __name__ == "__main__":
-    word = get_word()
-    play(word)
-    while input("Play Again? (Y/N) ").upper() == "Y":
+    while True:
         word = get_word()
         play(word)
+        if not input("Play Again? (Y/N) ").upper() == "Y":
+            break
