@@ -468,6 +468,8 @@ def isLetterGuess(guess):
 def isWordGuess(guess, word):
     return len(guess) == len(word) and guess.isalpha()
 
+def isValidGuess(guess, word):
+    return isLetterGuess(guess) or isWordGuess(guess, word)
 
 def play(word):
     print(word)
@@ -481,6 +483,10 @@ def play(word):
 
     while not guessed and tries > 0:
         guess = input("Please guess a letter or word: ").upper()
+        if not isValidGuess(guess, word):
+            print("Not a valid guess.")
+            continue
+
         if isLetterGuess(guess):
             if guess in guessed_letters:
                 print("You already guessed the letter", guess)
@@ -508,8 +514,7 @@ def play(word):
             else:
                 guessed = True
                 word_completion = word
-        else:
-            print("Not a valid guess.")
+
         displayHangman(tries, word_completion)
     displayPlayResult(guessed, word)
     
