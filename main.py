@@ -446,6 +446,14 @@ def get_word():
     word = random.choice(word_list)
     return word.upper()
 
+def displayWelcomeMessage():
+    print("Let's play Hangman!")
+
+def displayHangman(tries, word_completion):
+    print(displayHangmanStages(tries))
+    print(word_completion)
+    print("\n")
+    
 
 def play(word):
     print(word)
@@ -454,10 +462,9 @@ def play(word):
     guessed_letters = []
     guessed_words = []
     tries = 6
-    print("Let's play Hangman!")
-    print(displayHangmanStages(tries))
-    print(word_completion)
-    print("\n")
+    displayWelcomeMessage()
+
+    displayHangman(tries, word_completion)
     while not guessed and tries > 0:
         guess = input("Please guess a letter or word: ").upper()
         if len(guess) == 1 and guess.isalpha():
@@ -489,9 +496,7 @@ def play(word):
                 word_completion = word
         else:
             print("Not a valid guess.")
-        print(displayHangmanStages(tries))
-        print(word_completion)
-        print("\n")
+        displayHangman(tries, word_completion)
     if guessed:
         print("Congrats, you guessed the word! You win!")
     else:
