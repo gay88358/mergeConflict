@@ -577,11 +577,12 @@ def displayHangmanStages(tries):
     ]
     return stages[tries]
 
-
+def wantToPlayAgain():
+    return input("Play Again? (Y/N) ").upper() == "Y"
 
 if __name__ == "__main__":
     while True:
         word = get_word()
         play(word)
-        if not input("Play Again? (Y/N) ").upper() == "Y":
+        if not wantToPlayAgain():
             break
