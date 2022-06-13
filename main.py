@@ -455,7 +455,7 @@ def play(word):
     guessed_words = []
     tries = 6
     print("Let's play Hangman!")
-    print(display_hangman(tries))
+    print(displayHangmanStages(tries))
     print(word_completion)
     print("\n")
     while not guessed and tries > 0:
@@ -489,7 +489,7 @@ def play(word):
                 word_completion = word
         else:
             print("Not a valid guess.")
-        print(display_hangman(tries))
+        print(displayHangmanStages(tries))
         print(word_completion)
         print("\n")
     if guessed:
@@ -498,7 +498,7 @@ def play(word):
         print("Sorry, you ran out of tries. The word was " + word + ". Maybe next time!")
 
 
-def display_hangman(tries):
+def displayHangmanStages(tries):
     stages = [  # final state: head, torso, both arms, and both legs
                 """
                    --------
