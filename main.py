@@ -1,3 +1,4 @@
+from importlib.metadata import PathDistribution
 import random
 
 word_list = [
@@ -454,6 +455,19 @@ def displayHangman(tries, word_completion):
     print(word_completion)
     print("\n")
     
+def displayPlayResult(guessed, word):
+    if guessed:
+        print("Congrats, you guessed the word! You win!")
+    else:
+        print("Sorry, you ran out of tries. The word was " + word + ". Maybe next time!")
+
+
+def isLetterGuess(guess):
+    return len(guess) == 1 and guess.isalpha()
+
+def isWordGuess(guess, word):
+    return len(guess) == len(word) and guess.isalpha()
+
 
 def play(word):
     print(word)
@@ -463,11 +477,11 @@ def play(word):
     guessed_words = []
     tries = 6
     displayWelcomeMessage()
-
     displayHangman(tries, word_completion)
+
     while not guessed and tries > 0:
         guess = input("Please guess a letter or word: ").upper()
-        if len(guess) == 1 and guess.isalpha():
+        if isLetterGuess(guess):
             if guess in guessed_letters:
                 print("You already guessed the letter", guess)
             elif guess not in word:
@@ -484,7 +498,7 @@ def play(word):
                 word_completion = "".join(word_as_list)
                 if "_" not in word_completion:
                     guessed = True
-        elif len(guess) == len(word) and guess.isalpha():
+        elif isWordGuess(guess, word):
             if guess in guessed_words:
                 print("You already guessed the word", guess)
             elif guess != word:
@@ -497,12 +511,8 @@ def play(word):
         else:
             print("Not a valid guess.")
         displayHangman(tries, word_completion)
-    if guessed:
-        print("Congrats, you guessed the word! You win!")
-    else:
-        print("Sorry, you ran out of tries. The word was " + word + ". Maybe next time!")
-
-
+    displayPlayResult(guessed, word)
+    
 def displayHangmanStages(tries):
     stages = [  # final state: head, torso, both arms, and both legs
                 """
