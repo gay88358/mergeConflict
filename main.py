@@ -2,7 +2,6 @@ from importlib.metadata import PathDistribution
 import random
 
 word_list = [
-    'soup',
     'mount',
     'extend',
     'brown',
