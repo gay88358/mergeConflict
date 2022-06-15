@@ -479,6 +479,29 @@ def filledWordCompletion(word_completion, guess, word):
     return "".join(word_as_list)
 
 
+class GuessValue:
+    def __init__(self):
+        pass
+
+    def value(self):
+        while True:
+            guess = input("Please guess a letter or word: ").upper()
+            if not self.isValidGuess(guess, word):
+                print("Not a valid guess.")
+                continue
+            return guess
+
+
+    def isLetterGuess(guess):
+        return len(guess) == 1 and guess.isalpha()
+
+    def isWordGuess(guess, word):
+        return len(guess) == len(word) and guess.isalpha()
+
+    def isValidGuess(guess, word):
+        return isLetterGuess(guess) or isWordGuess(guess, word)
+
+
 def play(word):
     print(word)
     word_completion = "_" * len(word)
